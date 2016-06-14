@@ -28,6 +28,23 @@ var albumPicasso = {
      ]
  }; 
 
+var albumLeonardo = {
+     title: 'Flight',
+     artist: 'Leonardo DaVinci',
+     label: 'Humanist Records',
+     year: '1476',
+     albumArtUrl: 'assets/images/album_covers/07.png',
+     songs: [
+         { title: 'Vitruvian Man', duration: '1:01' },
+         { title: 'The Battle of Anghiara', duration: '5:01' },
+         { title: 'The Last Supper', duration: '3:21'},
+         { title: 'Gran Cavallo', duration: '3:14' },
+         { title: 'Mona Lisa', duration: '2:15'}
+     ]
+ }; 
+
+var albumArray = [albumPicasso, albumLeonardo, albumMarconi];
+
 var createSongRow = function(songNumber, songName, songLength) {
      var template =
         '<tr class="album-view-song-item">'
@@ -39,6 +56,12 @@ var createSongRow = function(songNumber, songName, songLength) {
  
      return template;
  };
+
+var albumTitle = document.getElementsByClassName('album-view-title')[0];
+var albumArtist = document.getElementsByClassName('album-view-artist')[0];
+var albumReleaseInfo = document.getElementsByClassName('album-view-release-info')[0];
+var albumImage = document.getElementsByClassName('album-cover-art')[0];
+var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
 
 var setCurrentAlbum = function(album) {
      var albumTitle = document.getElementsByClassName('album-view-title')[0];
@@ -58,7 +81,17 @@ var setCurrentAlbum = function(album) {
          albumSongList.innerHTML += createSongRow(i + 1, album.songs[i].title, album.songs[i].duration);
      }
  };
- 
- window.onload = function() {
-     setCurrentAlbum(albumPicasso);
- };
+
+
+window.onload = function() {
+    setCurrentAlbum(albumArray[0]);
+    var i = 0;  
+    
+    albumImage.addEventListener('click', function(event) {
+        setCurrentAlbum(albumArray[i]);
+        i++;
+        if(i >= albumArray.length) {
+           i = 0;
+        }
+    });
+}
