@@ -74,8 +74,8 @@ window.onload = function() {
             while (currentParent.className != targetClass && currentParent.className !== null) {
                 currentParent = currentParent.parentElement;
             }
-        return currentParent;
-        }
+            return currentParent;
+        } 
     };  
     
     var getSongItem = function(element) {
@@ -114,13 +114,13 @@ window.onload = function() {
      }
 
    };
-
+   
+   var songListContainer = document.getElementsByClassName('album-view-song-list')[0];
 
    songListContainer.addEventListener('mouseover', function(event) {
          if (event.target.parentElement.className === 'album-view-song-item') {
              var songItem = getSongItem(event.target);
-
-            if (songItem.getAttribute('data-song-number') !== currentlyPlayingSong) {
+             if (songItem.getAttribute('data-song-number') !== currentlyPlayingSong) {
                  songItem.innerHTML = playButtonTemplate;
             }
          }
