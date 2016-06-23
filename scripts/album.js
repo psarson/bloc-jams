@@ -70,18 +70,18 @@ window.onload = function() {
    
     var findParentByClassName = function(element, targetClass) {
         if (element) {
-            if (element.parentElement === null || element.parentElement === undefined) {
-                    return "No Parent Found";
-                }
+            if (element.parentElement === null) {
+                console.log("No Parent Found");
+                return false; 
+            } else if (element.parentElement.className != targetClass) {
+                console.log("No parent found with that class name");
+                return false;
+            }
             var currentParent = element.parentElement;
             while (currentParent.className != targetClass && currentParent.className !== null) {
-                if (targetClass.className === null || targetClass.className === undefined) {
-                    return "No parent found with that class name";
-                } else {
-                    currentParent = currentParent.parentElement; 
-                }
+                currentParent = currentParent.parentElement; 
             }
-        return currentParent;
+            return currentParent;
         }
     };  
     
